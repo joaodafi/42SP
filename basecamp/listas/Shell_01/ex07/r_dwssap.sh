@@ -1,0 +1,2 @@
+#!/bin/sh
+cat /etc/passwd | grep -v "^#" | awk 'NR%2==0' | rev | cut --delimiter=":" --fields=7 | sort | tac | awk "NR>=${FT_LINE1:-6} && NR<=${FT_LINE2:-15}" | tr '\n' ', ' | sed 's/,/, /g' | sed 's/,$/./'
